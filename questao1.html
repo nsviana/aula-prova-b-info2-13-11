@@ -1,3 +1,171 @@
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Meu perfil de aventura</title><style>
-*{box-sizing:border-box}body{margin:0;min-height:100vh;background:linear-gradient(160deg,#102b4e,#167b83);font:16px/1.5 Arial,sans-serif;color:#18253a;display:grid;place-items:center;padding:22px}.phone{width:min(100%,390px);min-height:650px;border:8px solid #101a2b;border-radius:32px;background:#f5f8fc;padding:22px;box-shadow:0 25px 60px #07172c88}.top{display:flex;justify-content:space-between;color:#5c6f85;font-size:13px;font-weight:bold}.brand{margin-top:32px;color:#168079;font-size:13px;font-weight:bold;text-transform:uppercase;letter-spacing:.12em}.hero{padding:23px 0 14px}.hero h1{margin:6px 0;color:#17395c;font-size:30px;line-height:1.1}.hero p{color:#65758a}.avatar{width:88px;height:88px;margin:14px auto;border-radius:26px;background:linear-gradient(145deg,#f4bd55,#ef8058);display:grid;place-items:center;font-size:42px}.card{background:white;border:1px solid #dce5ef;border-radius:18px;padding:18px;margin:14px 0;box-shadow:0 8px 18px #19395b0c}label{display:block;font-weight:bold;font-size:14px;color:#34465e}input{width:100%;padding:13px;margin:8px 0 13px;border:1px solid #cbd7e4;border-radius:10px;font-size:16px}button{width:100%;border:0;border-radius:11px;padding:13px;margin:5px 0;background:#3156d3;color:white;font-weight:bold;font-size:15px;cursor:pointer}button.secondary{background:#e8efff;color:#2448bc}.status{padding:13px;border-radius:10px;background:#edf7f5;color:#146b64;text-align:center;font-weight:bold}.foot{text-align:center;color:#7b899b;font-size:12px;margin-top:22px}
-</style></head><body><main class="phone"><div class="top"><span>9:41</span><span>● ● ● 100%</span></div><div class="brand">Trilha · comunidade ao ar livre</div><header class="hero"><div class="avatar">🥾</div><h1>Seu próximo passo começa aqui.</h1><p>Entre na comunidade e prepare-se para a próxima aventura.</p></header><section class="card"><label for="nome">Como podemos chamar você?</label><input id="nome" type="text" placeholder="Digite seu nome"><button onclick="comecar()">Começar</button><button class="secondary" onclick="confirmarPresenca()">Confirmar presença</button></section><section class="card"><p class="status" id="situacao">Sua presença ainda não foi confirmada.</p></section><p class="foot">Encontro da turma · sábado, às 8h</p></main><script src="questao1.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu perfil de aventura</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      display: grid;
+      place-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 22px;
+      background: linear-gradient(160deg, #102b4e, #167b83);
+      color: #18253a;
+      font: 16px/1.5 Arial, sans-serif;
+    }
+
+    .phone {
+      width: min(100%, 390px);
+      min-height: 650px;
+      padding: 22px;
+      border: 8px solid #101a2b;
+      border-radius: 32px;
+      background: #f5f8fc;
+      box-shadow: 0 25px 60px #07172c88;
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      color: #5c6f85;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .brand {
+      margin-top: 32px;
+      color: #168079;
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .hero {
+      padding: 23px 0 14px;
+    }
+
+    .hero h1 {
+      margin: 6px 0;
+      color: #17395c;
+      font-size: 30px;
+      line-height: 1.1;
+    }
+
+    .hero p {
+      color: #65758a;
+    }
+
+    .avatar {
+      display: grid;
+      place-items: center;
+      width: 88px;
+      height: 88px;
+      margin: 14px auto;
+      border-radius: 26px;
+      background: linear-gradient(145deg, #f4bd55, #ef8058);
+      font-size: 42px;
+    }
+
+    .card {
+      margin: 14px 0;
+      padding: 18px;
+      border: 1px solid #dce5ef;
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: 0 8px 18px #19395b0c;
+    }
+
+    label {
+      display: block;
+      color: #34465e;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      margin: 8px 0 13px;
+      padding: 13px;
+      border: 1px solid #cbd7e4;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      margin: 5px 0;
+      padding: 13px;
+      border: 0;
+      border-radius: 11px;
+      background: #3156d3;
+      color: #fff;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button.secondary {
+      background: #e8efff;
+      color: #2448bc;
+    }
+
+    .status {
+      padding: 13px;
+      border-radius: 10px;
+      background: #edf7f5;
+      color: #146b64;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .foot {
+      margin-top: 22px;
+      color: #7b899b;
+      font-size: 12px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <main class="phone">
+    <div class="top">
+      <span>9:41</span>
+      <span>● ● ● 100%</span>
+    </div>
+
+    <div class="brand">Trilha · comunidade ao ar livre</div>
+
+    <header class="hero">
+      <div class="avatar">🥾</div>
+      <h1>Seu próximo passo começa aqui.</h1>
+      <p>Entre na comunidade e prepare-se para a próxima aventura.</p>
+    </header>
+
+    <section class="card">
+      <label for="nome">Como podemos chamar você?</label>
+      <input id="nome" type="text" placeholder="Digite seu nome">
+      <button onclick="comecar()">Começar</button>
+      <button class="secondary" onclick="confirmarPresenca()">
+        Confirmar presença
+      </button>
+    </section>
+
+    <section class="card">
+      <p class="status" id="situacao">
+        Sua presença ainda não foi confirmada.
+      </p>
+    </section>
+
+    <p class="foot">Encontro da turma · sábado, às 8h</p>
+  </main>
+
+  <script src="questao1.js"></script>
+</body>
+</html>

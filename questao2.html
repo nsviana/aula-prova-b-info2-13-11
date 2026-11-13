@@ -1,4 +1,211 @@
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Orçamento do passeio</title><style>
-*{box-sizing:border-box}body{margin:0;min-height:100vh;background:#f0f4fa;font:16px/1.5 Arial,sans-serif;color:#1d2b43}.wrap{width:min(900px,calc(100% - 28px));margin:26px auto}.hero{padding:27px;border-radius:21px;background:linear-gradient(125deg,#263f74,#416fc2);color:white}.eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:12px;color:#d3e3ff;font-weight:bold}.hero h1{font-size:32px;line-height:1.1;margin:8px 0}.hero p{color:#e2ebfa}.section-title{margin:25px 0 12px}.costs{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.cost{padding:16px;border-radius:14px;background:#fff;border:1px solid #dce4f0;box-shadow:0 7px 18px #20375d0b}.cost label,.group label{display:block;margin-bottom:7px;font-weight:bold;color:#34496a}.cost small{display:block;color:#708097;margin-bottom:10px}.cost input,.group input{width:100%;padding:11px;border:1px solid #cbd6e5;border-radius:9px;font-size:16px}.group{margin-top:15px;padding:16px;border:1px solid #dce4f0;background:#fff;border-radius:14px}.group input{max-width:200px}.actions{margin:18px 0}.actions button{border:0;border-radius:10px;padding:13px 17px;background:#16836f;color:white;font-size:15px;font-weight:bold;cursor:pointer}.result{min-height:105px;padding:18px;border-radius:14px;background:#eaf0ff;border:1px solid #d1def4}.result h3{margin:0 0 8px;color:#263f74}.result p{margin:5px 0}.foot{text-align:center;color:#718099;font-size:13px;margin:20px}
-@media(max-width:580px){.costs{grid-template-columns:1fr}.hero h1{font-size:28px}.wrap{margin:14px auto}}
-</style></head><body><main class="wrap"><header class="hero"><div class="eyebrow">Planejamento da turma · saída de campo</div><h1>Vamos organizar<br>nosso passeio?</h1><p>Confira os custos estimados e descubra quanto será necessário para a turma toda.</p></header><h2 class="section-title">Custos por estudante</h2><section class="costs"><div class="cost"><label for="transporte">Transporte</label><small>Ônibus até o destino</small><input class="custo" id="transporte" type="number" value="120"></div><div class="cost"><label for="entrada">Entrada</label><small>Acesso ao parque</small><input class="custo" id="entrada" type="number" value="25"></div><div class="cost"><label for="alimentacao">Alimentação</label><small>Lanche e água</small><input class="custo" id="alimentacao" type="number" value="35"></div><div class="cost"><label for="guia">Guia local</label><small>Visita acompanhada</small><input class="custo" id="guia" type="number" value="15"></div></section><div class="group"><label for="alunos">Quantidade de estudantes</label><input id="alunos" type="number" value="30"></div><div class="actions"><button onclick="calcularOrcamento()">Calcular orçamento</button></div><section class="result"><h3>Resumo do passeio</h3><div id="resultado">Preencha os custos e clique em “Calcular orçamento”.</div></section><p class="foot">Planejamento de passeio · INFO2</p></main><script src="questao2.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orçamento do passeio</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background: #f0f4fa;
+      color: #1d2b43;
+      font: 16px/1.5 Arial, sans-serif;
+    }
+
+    .wrap {
+      width: min(900px, calc(100% - 28px));
+      margin: 26px auto;
+    }
+
+    .hero {
+      padding: 27px;
+      border-radius: 21px;
+      background: linear-gradient(125deg, #263f74, #416fc2);
+      color: #fff;
+    }
+
+    .eyebrow {
+      color: #d3e3ff;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      margin: 8px 0;
+      font-size: 32px;
+      line-height: 1.1;
+    }
+
+    .hero p {
+      color: #e2ebfa;
+    }
+
+    .section-title {
+      margin: 25px 0 12px;
+    }
+
+    .costs {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .cost {
+      padding: 16px;
+      border: 1px solid #dce4f0;
+      border-radius: 14px;
+      background: #fff;
+      box-shadow: 0 7px 18px #20375d0b;
+    }
+
+    .cost label,
+    .group label {
+      display: block;
+      margin-bottom: 7px;
+      color: #34496a;
+      font-weight: bold;
+    }
+
+    .cost small {
+      display: block;
+      margin-bottom: 10px;
+      color: #708097;
+    }
+
+    .cost input,
+    .group input {
+      width: 100%;
+      padding: 11px;
+      border: 1px solid #cbd6e5;
+      border-radius: 9px;
+      font-size: 16px;
+    }
+
+    .group {
+      margin-top: 15px;
+      padding: 16px;
+      border: 1px solid #dce4f0;
+      border-radius: 14px;
+      background: #fff;
+    }
+
+    .group input {
+      max-width: 200px;
+    }
+
+    .actions {
+      margin: 18px 0;
+    }
+
+    .actions button {
+      padding: 13px 17px;
+      border: 0;
+      border-radius: 10px;
+      background: #16836f;
+      color: #fff;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .result {
+      min-height: 105px;
+      padding: 18px;
+      border: 1px solid #d1def4;
+      border-radius: 14px;
+      background: #eaf0ff;
+    }
+
+    .result h3 {
+      margin: 0 0 8px;
+      color: #263f74;
+    }
+
+    .result p {
+      margin: 5px 0;
+    }
+
+    .foot {
+      margin: 20px;
+      color: #718099;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    @media (max-width: 580px) {
+      .costs {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 28px;
+      }
+
+      .wrap {
+        margin: 14px auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="hero">
+      <div class="eyebrow">Planejamento da turma · saída de campo</div>
+      <h1>Vamos organizar<br>nosso passeio?</h1>
+      <p>Confira os custos estimados e descubra quanto será necessário para a turma toda.</p>
+    </header>
+
+    <h2 class="section-title">Custos por estudante</h2>
+
+    <section class="costs">
+      <div class="cost">
+        <label for="transporte">Transporte</label>
+        <small>Ônibus até o destino</small>
+        <input class="custo" id="transporte" type="number" value="120">
+      </div>
+      <div class="cost">
+        <label for="entrada">Entrada</label>
+        <small>Acesso ao parque</small>
+        <input class="custo" id="entrada" type="number" value="25">
+      </div>
+      <div class="cost">
+        <label for="alimentacao">Alimentação</label>
+        <small>Lanche e água</small>
+        <input class="custo" id="alimentacao" type="number" value="35">
+      </div>
+      <div class="cost">
+        <label for="guia">Guia local</label>
+        <small>Visita acompanhada</small>
+        <input class="custo" id="guia" type="number" value="15">
+      </div>
+    </section>
+
+    <div class="group">
+      <label for="alunos">Quantidade de estudantes</label>
+      <input id="alunos" type="number" value="30">
+    </div>
+
+    <div class="actions">
+      <button onclick="calcularOrcamento()">Calcular orçamento</button>
+    </div>
+
+    <section class="result">
+      <h3>Resumo do passeio</h3>
+      <div id="resultado">
+        Preencha os custos e clique em “Calcular orçamento”.
+      </div>
+    </section>
+
+    <p class="foot">Planejamento de passeio · INFO2</p>
+  </main>
+
+  <script src="questao2.js"></script>
+</body>
+</html>
